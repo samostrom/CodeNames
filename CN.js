@@ -86,7 +86,13 @@ const WORD_BANK = [
 // State Variables
 
 
+let turn;
 
+let board;
+
+let winner;
+
+let colors;
 
 
 
@@ -109,3 +115,15 @@ const WORD_BANK = [
 
 
 // Functions
+
+function init() {
+    
+    
+    board = 
+    ['',''
+     '','']
+    colors = ['red', 'blue', 'black', 'grey']
+    turn = "Red Team"
+
+    
+}
