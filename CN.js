@@ -1,7 +1,7 @@
 // Constants
 
 const WORD_BANK = [
-    'Acre', 'Addendum' ,'Advertise', 'Aisle', 'Aircraft', 'Aircraft', 'Alligator'',' 
+    'Acre', 'Addendum' ,'Advertise', 'Aisle', 'Aircraft', 'Aircraft', 'Alligator',
     'Alphabetize', 'America', 'Ankle', 'Apathy', 'Applause', 'Applesauc', 'Application',
     'Archaeologist', 'Aristocrat', 'Arm', 'Armada', 'Asleep', 'Astronaut', 'Athlete', 'Atlantis',
     'Aunt', 'Avocado', 'Baby-Sitter', 'Backbone', 'Bag', 'Baguette', 'Bald', 'Balloon', 'Banana',
@@ -16,7 +16,7 @@ const WORD_BANK = [
     'Ceiling', 'Cell', 'Century', 'Chair', 'Chalk', 'Champion', 'Charger', 'Cheerleader', 
     'Chef', 'Chess', 'Chew', 'Chicken', 'Chime', 'China', 'Chocolate', 'Church', 'Circus', 
     'Clay', 'Cliff', 'Cloak', 'Clockwork', 'Clown', 'Clue', 'Coach', 'Coal', 'Coaster', 'Cog', 
-    'Cold', 'College', 'Comfort', 'Computer', 'Cone', 'Constrictor', 'Continuum'',' 
+    'Cold', 'College', 'Comfort', 'Computer', 'Cone', 'Constrictor', 'Continuum',
     'Conversation', 'Cook', 'Coop', 'Cord', 'Corduroy', 'Cot', 'Cough', 'Cow', 'Cowboy', 
     'Crayon', 'Cream', 'Crisp', 'Criticize', 'Crow', 'Cruise', 'Crumb', 'Crust', 'Cuff', 
     'Curtain', 'Cuticle', 'Czar', 'Dad', 'Dart', 'Dawn', 'Day', 'Deep', 'Defect', 'Dent', 
@@ -50,7 +50,7 @@ const WORD_BANK = [
     'Organ', 'Organize', 'Outer', 'Outside', 'Ovation', 'Overture', 'Pail', 'Paint', 
     'Pajamas', 'Palace', 'Pants', 'Paper', 'Paper', 'Park', 'Parody', 'Party', 'Password', 
     'Pastry', 'Pawn', 'Pear', 'Pen', 'Pencil', 'Pendulum', 'Penis', 'Penny', 'Pepper', 
-    'Personal', 'Philosopher', 'Phone', 'Photograph', 'Piano', 'Picnic', 'Pigpen'',' 
+    'Personal', 'Philosopher', 'Phone', 'Photograph', 'Piano', 'Picnic', 'Pigpen', 
     'Pillow', 'Pilot', 'Pinch', 'Ping', 'Pinwheel', 'Pirate', 'Plaid', 'Plan', 'Plank', 
     'Plate', 'Platypus', 'Playground', 'Plow', 'Plumber', 'Pocket', 'Poem', 'Point',
     'Pole', 'Pomp', 'Pong', 'Pool', 'Popsicle', 'Population', 'Portfolio', 'Positive',
@@ -80,6 +80,7 @@ const WORD_BANK = [
     'Wristwatch', 'Yardstick', 'Zamboni', 'Zen', 'Zero', 'Zipper', 'Zone', 'Zoo', 'Acne'
 ]
 
+// COLORS = ['red', 'blue', 'black', 'grey'] Do I really need this???
 
 
 
@@ -92,7 +93,7 @@ let board;
 
 let winner;
 
-let colors;
+let cardAssign;
 
 
 
@@ -106,7 +107,7 @@ let colors;
 
 // Event Listeners 
 
-
+document.querySelector('color_randomizer').addEventListener('click', randomSpyBoard);
 
 
 
@@ -118,12 +119,58 @@ let colors;
 
 function init() {
     
-    
-    board = 
-    ['',''
-     '','']
-    colors = ['red', 'blue', 'black', 'grey']
-    turn = "Red Team"
+    // assign the turn
+    turn = "Red Team";
 
+
+    // initialize the board and fill it with words
+    board = [];
+    while (board.length < 25) {
+        let randomWord = WORD_BANK[Math.floor(Math.random() * WORD_BANK.length)];
+        board.push(randomWord);
+    };
     
+    // set the spymaster's boards
+    spyBoard = board;
+
+
+    // initilize which words belong to which colors
+    cardAssign = {
+        red: [],
+        blue: [],
+        black: [],
+        nuetral: [],
+    };
+    
+    render();
+};
+
+init();
+
+
+function randomSpyBoard() {
+    while (cardAssign.red.length < 8 && cardAssign.blue.length < 7 && cardAssign.black.length < 1)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function render() {
+
+
+
+
+};
