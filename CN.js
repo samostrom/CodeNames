@@ -80,7 +80,13 @@ const WORD_BANK = [
     'Wristwatch', 'Yardstick', 'Zamboni', 'Zen', 'Zero', 'Zipper', 'Zone', 'Zoo', 'Acne'
 ]
 
-// COLORS = ['red', 'blue', 'black', 'grey'] Do I really need this???
+
+COLOR_BANK = ["red", "blue", "grey", "black"]
+
+// I need 8 red, 7 blue, 9 grey, and 1 black, all randomized between the tiles
+
+
+
 
 
 
@@ -92,8 +98,6 @@ let turn;
 let board;
 
 let winner;
-
-let cardAssign;
 
 
 
@@ -107,7 +111,7 @@ let cardAssign;
 
 // Event Listeners 
 
-document.querySelector('color_randomizer').addEventListener('click', randomSpyBoard);
+
 
 
 
@@ -126,46 +130,44 @@ function init() {
     // initialize the board and fill it with words
     board = [];
     while (board.length < 25) {
+        let tile = {
+            discovered: false,
+            word: null,
+            color: null,
+        };
+        
         let randomWord = WORD_BANK[Math.floor(Math.random() * WORD_BANK.length)];
-        board.push(randomWord);
-    };
-    
-    // set the spymaster's boards
-    spyBoard = board;
-
-
-    // initilize which words belong to which colors
-    cardAssign = {
-        red: [],
-        blue: [],
-        black: [],
-        nuetral: [],
-    };
+        tile.word = randomWord;
+        while (board.some((el) => 
+            el.word === tile.word
+        )) { 
+            randomWord = WORD_BANK[Math.floor(Math.random() * WORD_BANK.length)]
+            tile.word = randomWord;
+        }
+        board.push(tile);
+    }
+        
+    // let randomColor = COLOR_BANK[Math.floor(Math.random() * COLOR_BANK.length)]
+    // tile.color = randomColor;
+       
+    newColor(1, "black");
+    newColor(7, "blue");
+    newColor(8, "red");
+    newColor(9, "grey");
     
     render();
+
 };
 
 init();
 
 
-function randomSpyBoard() {
-    while (cardAssign.red.length < 8 && cardAssign.blue.length < 7 && cardAssign.black.length < 1)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function newColor(num, color) {
+    for (i=0; i < num; i++) {
+        let newBoard = board.filter(tile => tile.color === null);
+        newBoard[Math.floor(Math.random() * newBoard.length)].color = color;
+    }
+} 
 
 
 function render() {
