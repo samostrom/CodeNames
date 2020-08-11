@@ -107,11 +107,7 @@ let winner;
 
 
 
-
-
 // Event Listeners 
-
-
 
 
 
@@ -127,7 +123,7 @@ function init() {
     turn = "Red Team";
 
 
-    // initialize the board and fill it with words
+    // making 25 different tiles here for my board that will have a random 
     board = [];
     while (board.length < 25) {
         let tile = {
@@ -146,16 +142,15 @@ function init() {
         }
         board.push(tile);
     }
-        
-    // let randomColor = COLOR_BANK[Math.floor(Math.random() * COLOR_BANK.length)]
-    // tile.color = randomColor;
+    
+    
        
     newColor(1, "black");
     newColor(7, "blue");
     newColor(8, "red");
     newColor(9, "grey");
     
-    createMainBoard()
+    createBoards()
 
     render();
 
@@ -163,6 +158,7 @@ function init() {
 
 init();
 
+// putting random colors into my tiles
 
 function newColor(num, color) {
     for (i=0; i < num; i++) {
@@ -171,8 +167,9 @@ function newColor(num, color) {
     }
 } 
 
+// creating the board here filled with words
 
-function createMainBoard() {
+function createBoards() {
     let numRows = 5;
     let count = 0;
     let table = document.createElement("table");
@@ -187,12 +184,25 @@ function createMainBoard() {
             row = table.insertRow();
         }
     }
+
+    //main table (first Table) creation here
     document.getElementById("mainBoard").appendChild(table);
-    
     firstTable = document.querySelector("table");
+
+
+    //cloning the main table and making it my side table
     cloneTable = firstTable.cloneNode(true);
     document.getElementById("sideBoard").appendChild(cloneTable);
 
+    //adding event listener so that main table elements are clickable
+    firstTable.addEventListener('click', boardClick);
+}
+
+
+// listening to the board and changing colors based off words
+
+function boardClick(e) {
+    console.log(e.target)
 }
 
 function render() {

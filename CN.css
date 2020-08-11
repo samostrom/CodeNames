@@ -24,16 +24,29 @@ main {
     
 }
 
-table {
+#mainBoard > table {
     border: 3px solid black;
     width: 500px;
 }
 
-td {
+#mainBoard td {
     border: 1px solid black;
     width: 90px;
     height: 40px;
     text-align: center;
+}
+
+#sideBoard > table {
+    border: 3px solid black;
+    width: 250px;
+}
+
+#sideBoard td {
+    border: 1px solid black;
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    font-size: 10px;
 }
 
 #mainBoard {
