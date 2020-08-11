@@ -154,7 +154,7 @@ function init() {
     newColor(7, "blue");
     newColor(8, "red");
     newColor(9, "grey");
-    
+    console.log(board)
     render();
 
 };
@@ -169,6 +169,25 @@ function newColor(num, color) {
     }
 } 
 
+
+function createTable() {
+    let numRows = 5;
+    let count = 0;
+    let table = document.createElement("table");
+    let row = table.insertRow();
+
+    for (let i of board){
+        let cell = row.insertCell();
+        cell.innerHTML = i.word;
+
+        count++;
+        if(count%numRows == 0) {
+            row = table.insertRow();
+        }
+    }
+
+    document.getElementById("")
+}
 
 function render() {
 
