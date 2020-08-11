@@ -154,7 +154,9 @@ function init() {
     newColor(7, "blue");
     newColor(8, "red");
     newColor(9, "grey");
-    console.log(board)
+    
+    createMainBoard()
+
     render();
 
 };
@@ -170,7 +172,7 @@ function newColor(num, color) {
 } 
 
 
-function createTable() {
+function createMainBoard() {
     let numRows = 5;
     let count = 0;
     let table = document.createElement("table");
@@ -185,8 +187,12 @@ function createTable() {
             row = table.insertRow();
         }
     }
+    document.getElementById("mainBoard").appendChild(table);
+    
+    firstTable = document.querySelector("table");
+    cloneTable = firstTable.cloneNode(true);
+    document.getElementById("sideBoard").appendChild(cloneTable);
 
-    document.getElementById("")
 }
 
 function render() {

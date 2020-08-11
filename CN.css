@@ -17,20 +17,23 @@ header{
 
 main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 10% 30% 20% 20% 20%;
     height: 100%;
     width: 100%;
-    background: radial-gradient(rgb:251 224 76)
+    
 }
 
-
-
-
-table.table1, table.table1 tr, table.table1 td {
+table {
     border: 3px solid black;
+    width: 500px;
+}
+
+td {
+    border: 1px solid black;
+    width: 90px;
     height: 40px;
-    width: 450px;
+    text-align: center;
 }
 
 #mainBoard {
@@ -41,11 +44,11 @@ table.table1, table.table1 tr, table.table1 td {
     justify-self: center;
 }
 
-table.table2, table.table2 tr, table.table2 td {
+/* table.table2, table.table2 tr, table.table2 td {
     border: 1px solid black;
     height: 25px;
     width: 250px;
-}
+} */
 
 #sideBoard {
     grid-column-start: 1;
