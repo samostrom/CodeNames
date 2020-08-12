@@ -100,13 +100,20 @@ let board;
 let winner;
 
 
+// cached elements
+
+
+const messages = document.getElementById("gameStatus");
+
+
 // Functions
 
 function init() {
-    
-    // assign the turn
+      
+    // assign the turn and message content
     turn = "Red Team";
 
+    messages.textContent = `It's ${turn}'s turn`
 
     // making 25 different tiles here for my board that will have a random word assigned to them. The colors are assigned below. They all have a discovered property that will turn true once click 
     // display the color of the word.
@@ -192,20 +199,37 @@ function boardClick(e) {
         if( element.word === wordSelected.innerHTML && element.discovered === false){
             element.discovered = true;
             wordSelected.style.backgroundColor = element.color;
-            getWinner()
-            
         }
-    
+    getWinner()
+    render()
+
 }
 
-// function getWinner() {
-//     let redCheck = board.filter(obj => obj.color === "red" && obj.discovered);
-//     let blueCheck = board.filter(obj => obj.color === "blue" && obj.discovered);
-//     let blackCheck = board.filter(obj => obj.color === "black" && obj.discovered);
-//     redCheck.length === 8 ? "Red Wins" : blueCheck.length === 7 ? "Blue Wins" : blackCheck.length === 1 ? 
-// }
+function getWinner() {
+    let redCheck = board.filter(obj => obj.color === "red" && obj.discovered);
+    let blueCheck = board.filter(obj => obj.color === "blue" && obj.discovered);
+    let blackCheck = board.filter(obj => obj.color === "black" && obj.discovered);
+    if (redCheck.length === 8) {
+        winner = "Red Team";
+    } else if (blueCheck.length === 7) {
+        winner = "Blue Team";
+    } else if (blackCheck.length === 1) {
+        winner = "lose";
+    } else {
+        winner = 0;
+    }
+    render()
+}
 
 
 function render() {
-    
+    if (winner === "Red Team") {
+        return messages.innerHTML = `Red Team Wins`
+    } else if (winner === "Blue Team") {
+        return messages.innerHTML = 'Blue Team Wins'
+    } else if (winner ===  "lose") {
+        return messages.innerHTML = `${turn} loses`
+    } else { 
+        return messages.innerHTML = `It's ${turn}'s turn`
+    }
 };
