@@ -100,19 +100,6 @@ let board;
 let winner;
 
 
-// Cached Elements
-
-
-
-
-// Event Listeners 
-
-
-
-
-
-
-
 // Functions
 
 function init() {
@@ -177,7 +164,6 @@ function createBoards() {
     for (let i of board){
         let cell = row.insertCell();
         cell.innerHTML = i.word;
-        
         count++;
         if(count%numRows == 0) {
             row = table.insertRow();
@@ -206,10 +192,18 @@ function boardClick(e) {
         if( element.word === wordSelected.innerHTML && element.discovered === false){
             element.discovered = true;
             wordSelected.style.backgroundColor = element.color;
+            getWinner()
+            
         }
     
 }
 
+// function getWinner() {
+//     let redCheck = board.filter(obj => obj.color === "red" && obj.discovered);
+//     let blueCheck = board.filter(obj => obj.color === "blue" && obj.discovered);
+//     let blackCheck = board.filter(obj => obj.color === "black" && obj.discovered);
+//     redCheck.length === 8 ? "Red Wins" : blueCheck.length === 7 ? "Blue Wins" : blackCheck.length === 1 ? 
+// }
 
 
 function render() {
