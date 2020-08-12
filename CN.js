@@ -100,8 +100,6 @@ let board;
 let winner;
 
 
-
-
 // Cached Elements
 
 
@@ -123,7 +121,8 @@ function init() {
     turn = "Red Team";
 
 
-    // making 25 different tiles here for my board that will have a random 
+    // making 25 different tiles here for my board that will have a random word assigned to them. The colors are assigned below. They all have a discovered property that will turn true once click 
+    // display the color of the word.
     board = [];
     while (board.length < 25) {
         let tile = {
@@ -143,7 +142,7 @@ function init() {
         board.push(tile);
     }
     
-    
+    // here colors are assigned to the words
        
     newColor(1, "black");
     newColor(7, "blue");
@@ -178,14 +177,14 @@ function createBoards() {
     for (let i of board){
         let cell = row.insertCell();
         cell.innerHTML = i.word;
-
+        
         count++;
         if(count%numRows == 0) {
             row = table.insertRow();
         }
     }
 
-    //main table (first Table) creation here
+    //main table (firstTable) creation here
     document.getElementById("mainBoard").appendChild(table);
     firstTable = document.querySelector("table");
 
@@ -202,12 +201,17 @@ function createBoards() {
 // listening to the board and changing colors based off words
 
 function boardClick(e) {
-    console.log(e.target)
+    let wordSelected = e.target;
+    for (let element of board)
+        if( element.word === wordSelected.innerHTML && element.discovered === false){
+            element.discovered = true;
+            wordSelected.style.backgroundColor = element.color;
+        }
+    
 }
 
+
+
 function render() {
-
-
-
-
+    
 };
