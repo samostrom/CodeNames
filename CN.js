@@ -83,13 +83,6 @@ const WORD_BANK = [
 
 COLOR_BANK = ["red", "blue", "grey", "black"]
 
-// I need 8 red, 7 blue, 9 grey, and 1 black, all randomized between the tiles
-
-
-
-
-
-
 // State Variables
 
 
@@ -219,7 +212,7 @@ function getWinner() {
         winner = 0;
     }
     render()
-}
+};
 
 
 function render() {
