@@ -110,9 +110,7 @@ const redEl = document.getElementById('red-list');
 
 document.getElementById("add-clues").addEventListener("click", addClue);
 
-
-
-
+document.querySelector(".switch").addEventListener("click", showColors);
 
 
 // Functions
@@ -192,8 +190,8 @@ function createBoards() {
 
 
     //cloning the main table and making it my side table
-    cloneTable = firstTable.cloneNode(true);
-    document.getElementById("sideBoard").appendChild(cloneTable);
+    // cloneTable = firstTable.cloneNode(true);
+    // document.getElementById("sideBoard").appendChild(cloneTable);
 
     //adding event listener so that main table elements are clickable
     firstTable.addEventListener('click', boardClick);
@@ -243,6 +241,8 @@ function render() {
     }
 };
 
+
+//add to a list of clues
 function addClue() {
     let clueEl = document.getElementById('code').value;
     let guessEl = document.getElementById('guess').value;
@@ -255,4 +255,19 @@ function addClue() {
         li.innerHTML = clueEl + " " + guessEl;
         blueEl.appendChild(li);
     }
+};
+
+// when we click the spymaster button it should take all of the false tiles and light them up to show their colors. When unchecked they should all go back
+function showColors() {
+    let boardSelected = document.querySelector('table').getElementsByTagName('tbody')[0];
+    for (let therow of boardSelected.rows) {
+        for(let thecell of therow.cells) {
+            tword = thecell.innerText
+            for (let element of board) {
+                if(tword === element.word && element.discovered === false) {
+                    thecell.classList.toggle(element.color)
+                }
+            }
+        }
+    }  
 };
