@@ -93,10 +93,26 @@ let board;
 let winner;
 
 
+
+
 // cached elements
 
 
 const messages = document.getElementById("gameStatus");
+
+const blueEl = document.getElementById('blue-list');
+
+const redEl = document.getElementById('red-list');
+
+
+
+// event listeners (event listeners for tables are in the create board function)
+
+document.getElementById("add-clues").addEventListener("click", addClue);
+
+
+
+
 
 
 // Functions
@@ -224,5 +240,19 @@ function render() {
         return messages.innerHTML = `${turn} loses`
     } else { 
         return messages.innerHTML = `It's ${turn}'s turn`
+    }
+};
+
+function addClue() {
+    let clueEl = document.getElementById('code').value;
+    let guessEl = document.getElementById('guess').value;
+    if (turn === "Red Team") {
+        let li = document.createElement('li');
+        li.innerHTML = clueEl + " " + guessEl;
+        redEl.appendChild(li);
+    } else {
+        let li = document.createElement('li');
+        li.innerHTML = clueEl + " " + guessEl;
+        blueEl.appendChild(li);
     }
 };
