@@ -116,6 +116,9 @@ main {
     justify-self: center;
 }
 
+ .grey {
+    background-color: grey;
+}
 
 .black {
     background-color: black;
@@ -127,11 +130,9 @@ main {
 
 .blue {
     background-color: blue;
-}
+} 
 
-.grey {
-    background-color: grey;
-}
+
 
 
 

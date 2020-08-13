@@ -92,7 +92,7 @@ let board;
 
 let winner;
 
-
+let spy;
 
 
 // cached elements
@@ -104,7 +104,7 @@ const blueEl = document.getElementById('blue-list');
 
 const redEl = document.getElementById('red-list');
 
-
+let tableEl;
 
 // event listeners (event listeners for tables are in the create board function)
 
@@ -116,7 +116,9 @@ document.querySelector(".switch").addEventListener("click", showColors);
 // Functions
 
 function init() {
-      
+    
+    spy = false;
+
     // assign the turn and message content
     turn = "Red Team";
 
@@ -141,6 +143,7 @@ function init() {
             tile.word = randomWord;
         }
         board.push(tile);
+        
     }
     
     // here colors are assigned to the words
@@ -154,6 +157,7 @@ function init() {
 
     render();
 
+    tableEl.forEach(td => console.log(td))
 };
 
 init();
@@ -187,11 +191,7 @@ function createBoards() {
     //main table (firstTable) creation here
     document.getElementById("mainBoard").appendChild(table);
     firstTable = document.querySelector("table");
-
-
-    //cloning the main table and making it my side table
-    // cloneTable = firstTable.cloneNode(true);
-    // document.getElementById("sideBoard").appendChild(cloneTable);
+    tableEl = document.querySelectorAll('td');
 
     //adding event listener so that main table elements are clickable
     firstTable.addEventListener('click', boardClick);
@@ -202,11 +202,8 @@ function createBoards() {
 
 function boardClick(e) {
     let wordSelected = e.target;
-    for (let element of board)
-        if( element.word === wordSelected.innerHTML && element.discovered === false){
-            element.discovered = true;
-            wordSelected.style.backgroundColor = element.color;
-        }
+    let tile = board.find(obj => obj.word === wordSelected.textContent);
+    tile.discovered = true;
     getWinner()
     render()
 
@@ -231,14 +228,24 @@ function getWinner() {
 
 function render() {
     if (winner === "Red Team") {
-        return messages.innerHTML = `Red Team Wins`
+        messages.textContent = `Red Team Wins`
     } else if (winner === "Blue Team") {
-        return messages.innerHTML = 'Blue Team Wins'
+        messages.textContent = 'Blue Team Wins'
     } else if (winner ===  "lose") {
-        return messages.innerHTML = `${turn} loses`
+        messages.textContent = `${turn} loses`
     } else { 
-        return messages.innerHTML = `It's ${turn}'s turn`
+        messages.textContent = `It's ${turn}'s turn`
     }
+
+    tableEl.forEach((td, idx) => {
+        if(spy || board[idx].discovered) {
+            td.style.backgroundColor = board[idx].color;
+        } else {
+            td.style.backgroundColor = "white"
+        }
+    })
+
+
 };
 
 
@@ -258,16 +265,10 @@ function addClue() {
 };
 
 // when we click the spymaster button it should take all of the false tiles and light them up to show their colors. When unchecked they should all go back
-function showColors() {
-    let boardSelected = document.querySelector('table').getElementsByTagName('tbody')[0];
-    for (let therow of boardSelected.rows) {
-        for(let thecell of therow.cells) {
-            tword = thecell.innerText
-            for (let element of board) {
-                if(tword === element.word && element.discovered === false) {
-                    thecell.classList.toggle(element.color)
-                }
-            }
-        }
-    }  
+function showColors(e) {
+    if (e.target.checked === undefined) {
+        return;
+    }
+    spy = e.target.checked;
+    render()
 };
