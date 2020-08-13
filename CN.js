@@ -112,6 +112,9 @@ document.getElementById("add-clues").addEventListener("click", addClue);
 
 document.querySelector(".switch").addEventListener("click", showColors);
 
+document.querySelector("#turn").addEventListener("click", changeTurn);
+
+document.querySelector("#newGame").addEventListener("click", newGame);
 
 // Functions
 
@@ -157,7 +160,6 @@ function init() {
 
     render();
 
-    tableEl.forEach(td => console.log(td))
 };
 
 init();
@@ -248,7 +250,6 @@ function render() {
 
 };
 
-
 //add to a list of clues
 function addClue() {
     let clueEl = document.getElementById('code').value;
@@ -272,3 +273,31 @@ function showColors(e) {
     spy = e.target.checked;
     render()
 };
+
+
+function changeTurn() {
+    turn = (turn === "Red Team") ? "Blue Team" : "Red Team";
+    render()
+};
+
+
+function newGame() {
+    
+    let tablePlaceholder = document.getElementById("mainBoard")
+    let tableDelete = document.querySelector('table');
+    tablePlaceholder.removeChild(tableDelete);
+    let blueP = document.querySelector('#blue-list');
+    let redP = document.querySelector('#red-list')
+    let liDelete = document.querySelector('li')
+    removeList(blueP)
+    removeList(redP)
+    init()
+
+}
+
+function removeList(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
+
