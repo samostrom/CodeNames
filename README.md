@@ -6,7 +6,11 @@
 
 <p> Two teams compete by each having a "spymaster" give one-word clues with a number that can point to multiple words on the board. The other players on the sane team attempt to guess their team's words while avoiding the words of the other team. First team to guess all of their words wins. To see the full complete set of rules please refer to https://howdoyouplayit.com/codename-rules-how-do-you-play-the-codename-board-game/ <p>
 
-[Screen Shot 2020-08-13 at 8.43.57 PM](https://i.imgur.com/yYECZwP.png)  [Screen Shot 2020-08-13 at 8.45.23 PM](https://i.imgur.com/t2TlTBQ.png)
+
+![](https://i.imgur.com/t2TlTBQ.png)
+
+![](https://i.imgur.com/yYECZwP.png)
+
 
 
 <h3>Getting Started:</h3> 
@@ -36,6 +40,8 @@ If you want to start a New Game, press the New Game Button up at the top right c
 <h3> Planned Future Enhancements </h3>
 
 <p> 
+
+- Be able to have Blue or Red Team start
 
 - Have Code Word and Guesses Box reset to empty
 
