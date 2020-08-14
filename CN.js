@@ -124,8 +124,8 @@ function init() {
 
     // assign the turn and message content
     turn = "Red Team";
-
-    messages.textContent = `It's ${turn}'s turn`
+    messages.style.color = "rgb(207,29,12)";
+    messages.textContent = `It's ${turn}'s turn`;
 
     // making 25 different tiles here for my board that will have a random word assigned to them. The colors are assigned below. They all have a discovered property that will turn true once click 
     // display the color of the word.
@@ -229,12 +229,22 @@ function getWinner() {
 
 
 function render() {
+    if(turn === "Red Team") {
+        messages.style.color = "rgb(207,29,12)";
+    } else {
+        messages.style.color = "rgb(26,32,201)";
+    }
+    
+    
     if (winner === "Red Team") {
         messages.textContent = `Red Team Wins`
+        messages.style.color = "rgb(207,29,12)";
     } else if (winner === "Blue Team") {
         messages.textContent = 'Blue Team Wins'
+        messages.style.color = "rgb(26,32,201)";
     } else if (winner ===  "lose") {
         messages.textContent = `${turn} loses`
+        messages.style.color = "rgb(19, 19, 20)";
     } else { 
         messages.textContent = `It's ${turn}'s turn`
     }
